@@ -14,7 +14,7 @@ ROS MoveIt! configuration files for Arduino.ORG's Braccio Arm. This package has 
     sudo pip install -U platformio
     sudo rm -rf ~/.platformio/
 
-## 3. Define Braccio's serial port on PlatformIO's ini file:
+## 3. Define Braccio's serial port on PlatformIO's .ini file:
 
 - Go to the firmware and edit the ini file:
 
@@ -31,9 +31,15 @@ ROS MoveIt! configuration files for Arduino.ORG's Braccio Arm. This package has 
 
     
 ## 5. Define Braccio's serial port on the launch file:
-Edit [demo.launch](https://github.com/grassjelly/ros_braccio_moveit/blob/master/launch/demo.launch#L50) and define your Braccio Arm's serial port:
 
-    <param name="port" value="/dev/ttyACM0" />
+- Go to launch folder and edit demo.launch:
+
+      roscd ros_braccio_moveit/launch
+      nano demo.launch
+
+- Define Braccio's serial port:
+
+      <param name="port" value="/dev/ttyACM0" />
 
 ## 6. Run the demo: 
 
