@@ -45,4 +45,10 @@
     <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
   </include>
 
+  <!-- Start ROS communication between the robot's computer and Linorobot base -->
+  <node pkg="rosserial_python" name="rosserial_lino" type="serial_node.py" output="screen">
+    <param name="port" value="/dev/braccio_arm" />
+    <param name="baud" value="115200" />
+  </node>
+
 </launch>
