@@ -8,16 +8,38 @@ ROS MoveIt! configuration files for Arduino.ORG's Braccio Arm. This package has 
 
     sudo apt-get install ros-indigo-moveit
 
-## 2. Define Braccio's serial port:
+## 2. Install PlatformIO:
+    sudo apt-get install python-setuptools 
+    sudo easy_install pip
+    sudo pip install -U platformio
+    sudo rm -rf ~/.platformio/
+
+## 3. Define Braccio's serial port on PlatformIO's ini file:
+
+- Go to the firmware and edit the ini file:
+
+      roscd ros_braccio_moveit/teensy
+      nano platformio.ini
+
+- Define Braccio's serial port:
+    
+      upload_port = /dev/ttyACM0
+
+## 4. Upload the codes:
+
+      platformio run --target upload
+
+    
+## 5. Define Braccio's serial port on the launch file:
 Edit [demo.launch](https://github.com/grassjelly/ros_braccio_moveit/blob/master/launch/demo.launch#L50) and define your Braccio Arm's serial port:
 
     <param name="port" value="/dev/ttyACM0" />
 
-## 3. Run the demo: 
+## 6. Run the demo: 
 
      roslaunch ros_braccio_moveit demo.launch
 
-## 4. Planning and execution
+## 7. Planning and execution
 - Click and drag the arrow markers towards your target pose. 
 - Go to "Planning" tab and click "Plan and Execute". 
 
