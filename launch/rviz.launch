@@ -1,0 +1,9 @@
+  <launch>
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find ros_braccio_moveit)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  </launch>
