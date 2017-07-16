@@ -4,9 +4,14 @@ ROS MoveIt! configuration files for Arduino.ORG's Braccio Arm. This package has 
 ![braccio_rviz](https://github.com/grassjelly/ros_braccio_moveit/blob/master/img/Screenshot%20from%202017-07-14%2020:02:12.png?raw=true)
 
 # Running the demo
-## 1. Install MoveIt:
+## 1. Download the packages
 
+    cd ~/catkin_ws/src
+    git clone https://github.com/grassjelly/ros_braccio_urdf.git
+    git clone https://github.com/grassjelly/ros_braccio_moveit.git
     sudo apt-get install ros-indigo-moveit
+    cd ..
+    catkin_make
 
 ## 2. Install PlatformIO:
     sudo apt-get install python-setuptools 
