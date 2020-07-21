@@ -1,10 +1,5 @@
 <launch>
 
-  <!-- By default, we do not start a database (it can be large) -->
-  <arg name="db" default="false" />
-  <!-- Allow user to specify database location -->
-  <arg name="db_path" default="$(find ros_braccio_moveit)/default_warehouse_mongo_db" />
-
   <!-- By default, we are not in debug mode -->
   <arg name="debug" default="false" />
 
@@ -21,6 +16,11 @@
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="/use_gui" value="true"/>
     <rosparam param="/source_list">[/move_group/fake_controller_joint_states]</rosparam>
+    <rosparam>
+    zeros:
+      elbow_joint: 1.5708
+      wrist_pitch_joint: 1.5708
+    </rosparam>
   </node>
 
   <!-- Given the published joint states, publish tf for the robot links -->
@@ -40,9 +40,5 @@
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
-  <!-- If database loading was enabled, start mongodb as well -->
-  <include file="$(find ros_braccio_moveit)/launch/default_warehouse_db.launch" if="$(arg db)">
-    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
-  </include>
 
 </launch>
