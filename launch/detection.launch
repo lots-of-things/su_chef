@@ -11,12 +11,7 @@
   </node>
 
   <!-- USB web cam driver -->
-  <node name="usb_cam<launch>
-        <node pkg="beginner_tutorials"
-                type="run_script.sh" name="run_script"
-                output="screen"
-        />
-</launch>" pkg="usb_cam" type="usb_cam_node" output="screen" clear_params="true">
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" clear_params="true">
     <param name="video_device" value="$(arg video_device)" />
     <param name="image_width" value="640" />
     <param name="image_height" value="480" />
