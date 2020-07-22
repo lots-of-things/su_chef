@@ -9,10 +9,18 @@ insert image here :)
 
 ## Instructions
 
-### 1. upload braccio_ros to assembled Braccio
-First you need an assembled and working Arduino Braccio arm.  You can use the Arduino IDE to upload the `braccio_ros/braccio_ros.ino` file to the Arduino running the bot.
+### 0. Install a ton of ROS stuff
 
-## 2. build project
+ROS is quite surprisingly awkward to set up, but follow along [here](http://wiki.ros.org/melodic/Installation/Ubuntu) and it should get you close to set up.  You will probably also have to add more packages as you go through using something like `sudo apt-get install ros-melodic-PACKAGE`.
+
+### 1. upload braccio_ros to assembled Braccio
+First you need an assembled and working Arduino Braccio arm.
+
+You'll also need to install ROS for Arduino following the instructions [here](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup) as well as adding the specific library in `libraries/BraccioLibRos` following the instructions [here](https://www.arduino.cc/en/guide/libraries).
+
+Then you can use the Arduino IDE to upload the `braccio_ros/braccio_ros.ino` file to the Arduino running the Braccio arm.
+
+### 2. build project
 
 Clone this repo into the src folder of a catkin workspace.
 ```
@@ -31,7 +39,7 @@ cd braccio_opencv_ws/src/ros_braccio_opencv_obj_detect_grab/models/
 wget https://pjreddie.com/media/files/yolov3.weights
 ```
 
-## 3. launch RViz and object detection backend
+### 3. launch RViz and object detection backend
 
 Launch the RViz model visualizer and the OpenCV object detection algorithm.
 
@@ -46,7 +54,7 @@ The above command doesn't connect to the .  If you want to actually drive the Br
 roslaunch ros_braccio_opencv_obj_detect_grab demo.launch start_detect:=true connect_braccio:=true
 ```
 
-## 4. Launch the interactive script
+### 4. Launch the interactive script
 Finally, in a separate terminal run the script to begin the interactive program.
 ```
 cd braccio_opencv_ws
@@ -63,13 +71,13 @@ p: print current pose
 q: quit script
 ```
 
-## 5. calibrate / load calibration
+### 5. calibrate / load calibration
 Before you start objects you need to calibrate a mapping from location in the image to motor angle positions in the Braccio. When you are ready to start, run `c` for calibrate.  First, you will be prompted to click on the center base of the robot in the image.  Then you will be asked to click in the center of the gripper as the robot arm moves around the field of view.
 
 After you have calibrated, you can press `l` on subsequent startups to load the calibration from file.  However, if you move the camera or the arm, you'll need to recalibrate.
 
 
-## 6. target objects for pickup
+### 6. target objects for pickup
 
 Finally, place your object in the field of view.  If the object is detected a box will appear around it with a label.  By default it is set up to detect only apples, but this can be changed by passing `tracked_object:=other_thing` as part of the `demo.launch` launch command above. Available objects as part of yolov3 can be found in `models/yolov3.txt`. Additional objects will require training a yolov3 model yourself.
 
