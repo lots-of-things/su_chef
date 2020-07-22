@@ -631,7 +631,8 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-    ros_braccio_moveit_opencv: Pick up items identified with OpenCV webcam using Arduino Braccio Arm
+    ros_braccio_opencv_detect_picknplace:
+    Pick up items identified with OpenCV webcam using Arduino Braccio Arm
     Copyright (C) 2020  Will Stedden
 
     This program is free software: you can redistribute it and/or modify

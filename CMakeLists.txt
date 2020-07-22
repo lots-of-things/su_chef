@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(ros_braccio_moveit_opencv)
+project(ros_braccio_opencv_detect_picknplace)
 
  ## Find catkin and any catkin packages
 find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs)

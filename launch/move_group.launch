@@ -1,12 +1,12 @@
 <launch>
 
-  <include file="$(find ros_braccio_moveit_opencv)/launch/planning_context.launch" />
+  <include file="$(find ros_braccio_opencv_detect_picknplace)/launch/planning_context.launch" />
 
   <!-- GDB Debug Option -->
   <arg name="debug" default="false" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix"
-	   value="gdb -x $(find ros_braccio_moveit_opencv)/launch/gdb_settings.gdb --ex run --args" />
+	   value="gdb -x $(find ros_braccio_opencv_detect_picknplace)/launch/gdb_settings.gdb --ex run --args" />
 
   <!-- Verbose Mode Option -->
   <arg name="info" default="$(arg debug)" />
@@ -20,12 +20,12 @@
   <arg name="publish_monitored_planning_scene" default="true"/>
 
   <!-- Planning Functionality -->
-  <include ns="move_group" file="$(find ros_braccio_moveit_opencv)/launch/planning_pipeline.launch.xml">
+  <include ns="move_group" file="$(find ros_braccio_opencv_detect_picknplace)/launch/planning_pipeline.launch.xml">
     <arg name="pipeline" value="ompl" />
   </include>
 
   <!-- Trajectory Execution Functionality -->
-  <include ns="move_group" file="$(find ros_braccio_moveit_opencv)/launch/trajectory_execution.launch.xml" if="$(arg allow_trajectory_execution)">
+  <include ns="move_group" file="$(find ros_braccio_opencv_detect_picknplace)/launch/trajectory_execution.launch.xml" if="$(arg allow_trajectory_execution)">
     <arg name="moveit_manage_controllers" value="true" />
   </include>
 

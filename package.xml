@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>ros_braccio_moveit_opencv</name>
+  <name>ros_braccio_opencv_detect_picknplace</name>
   <version>0.0.0</version>
-  <description>The ros_braccio_moveit_opencv package</description>
+  <description>The ros_braccio_opencv_detect_picknplace package</description>
 
   <maintainer email="will.stedden@gmail.com">stedn</maintainer>
   <license>BSD</license>

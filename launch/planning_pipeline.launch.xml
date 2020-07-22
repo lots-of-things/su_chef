@@ -5,6 +5,6 @@
 
   <arg name="pipeline" default="ompl" />
 
-  <include file="$(find ros_braccio_moveit_opencv)/launch/$(arg pipeline)_planning_pipeline.launch.xml" />
+  <include file="$(find ros_braccio_opencv_detect_picknplace)/launch/$(arg pipeline)_planning_pipeline.launch.xml" />
 
 </launch>
