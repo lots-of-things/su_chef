@@ -2,9 +2,9 @@
   <arg name="video_device" default="/dev/video2" />
 
   <!-- object detection module -->
-  <node name="object_detection" pkg="ros_braccio_opencv_detect_picknplace" type="object_detection_opencv.py" clear_params="true">
+  <node name="object_detection" pkg="ros_braccio_opencv_obj_detect_grab" type="object_detection_opencv.py" clear_params="true">
     <param name="input_image_compressed" value="/pi3a/image/compressed" />
-    <param name="model_path_prefix" value="$(find ros_braccio_opencv_detect_picknplace)/models/yolov3"/>
+    <param name="model_path_prefix" value="$(find ros_braccio_opencv_obj_detect_grab)/models/yolov3"/>
     <param name="tracked_object" value="apple"/>
     <param name="threshold" value="0.3"/>
     <param name="rotation_angle" value="-90.0"/>

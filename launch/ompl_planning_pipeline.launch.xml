@@ -17,6 +17,6 @@
   <param name="request_adapters" value="$(arg planning_adapters)" />
   <param name="start_state_max_bounds_error" value="$(arg start_state_max_bounds_error)" />
 
-  <rosparam command="load" file="$(find ros_braccio_opencv_detect_picknplace)/config/ompl_planning.yaml"/>
+  <rosparam command="load" file="$(find ros_braccio_opencv_obj_detect_grab)/config/ompl_planning.yaml"/>
 
 </launch>

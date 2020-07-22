@@ -14,6 +14,6 @@
   <param name="trajectory_execution/allowed_start_tolerance" value="0.01"/> <!-- default 0.01 -->
 
   <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->
-  <include file="$(find ros_braccio_opencv_detect_picknplace)/launch/fake_moveit_controller_manager.launch.xml" />
+  <include file="$(find ros_braccio_opencv_obj_detect_grab)/launch/fake_moveit_controller_manager.launch.xml" />
 
 </launch>

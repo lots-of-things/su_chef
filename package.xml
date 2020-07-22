@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>ros_braccio_opencv_detect_picknplace</name>
+  <name>ros_braccio_opencv_obj_detect_grab</name>
   <version>0.0.0</version>
-  <description>The ros_braccio_opencv_detect_picknplace package</description>
+  <description>The ros_braccio_opencv_obj_detect_grab package</description>
 
   <maintainer email="will.stedden@gmail.com">stedn</maintainer>
   <license>BSD</license>
