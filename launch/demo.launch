@@ -2,6 +2,7 @@
 
   <!-- By default, we are not in debug mode -->
   <arg name="debug" default="false" />
+  <arg name="tracked_object" default="apple" />
   <arg name="connect_braccio" default="false" />
   <arg name="start_detection" default="false" />
   <arg name="video_device" default="/dev/video2" />
@@ -46,7 +47,8 @@
   </include>
 
   <include if="$(arg start_detection)" file="$(find ros_braccio_opencv_obj_detect_grab)/launch/detection.launch">
-  <arg name="video_device" value="$(arg video_device)"/>
+    <arg name="video_device" value="$(arg video_device)"/>
+    <arg name="tracked_object" value="$(arg tracked_object)" />
   </include>
 
 </launch>

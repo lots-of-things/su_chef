@@ -1,5 +1,6 @@
 <launch>
   <arg name="video_device" default="/dev/video2" />
+  <arg name="tracked_object" default="apple" />
 
   <!-- object detection module -->
   <node name="object_detection" pkg="ros_braccio_opencv_obj_detect_grab" type="object_detection_opencv.py" clear_params="true">

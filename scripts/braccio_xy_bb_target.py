@@ -321,13 +321,12 @@ class BraccioXYBBTargetInterface(object):
     print self.gripper_group.get_current_joint_values()
     x, y = self.bounding_box_center()
     print x, y
-    print self.transform(x, y)
 
 def main():
   bb_targetter = BraccioXYBBTargetInterface()
 
   while True:
-      print "============ instructions: p=print, c=calibrate, l=load_calibration, t=target, m=manual, h=home, u=up, q=quit"
+      print "============ instructions: p=print, h=home, u=up, c=calibrate, l=load_calibration, t=target, m=manual, q=quit"
       inp = raw_input()
       if inp=='q':
           break
@@ -345,8 +344,6 @@ def main():
           bb_targetter.go_to_home()
       if inp=='u':
           bb_targetter.go_to_up()
-      if inp=='f':
-          bb_targetter.go_to_push(None)
 
 
 if __name__ == '__main__':

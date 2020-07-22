@@ -126,23 +126,17 @@ class ObjectDetectorOpenCV:
                 class_id = class_ids[i]
                 label = str(self.classes[class_id])
 
-
-                box = boxes[i]
-                x = box[0]
-                y = box[1]
-                w = box[2]
-                h = box[3]
-
                 if label == self.tracked_object:
+                    box = boxes[i]
+                    x = box[0]
+                    y = box[1]
+                    w = box[2]
+                    h = box[3]
                     box_msg = Int16MultiArray()
                     box_msg.data = [class_id, x, y, x+w, y+h]
                     self.pub_box.publish(box_msg)
-
-                color = self.COLORS[class_id]
-
-
-                draw_prediction(image, label, color, confidences[i], round(x), round(y), round(x+w), round(y+h))
-
+                    color = self.COLORS[class_id]
+                    draw_prediction(image, label, color, confidences[i], round(x), round(y), round(x+w), round(y+h))
 
         # skip if no subscribers are registered
         if self.pub_image.get_num_connections() == 0:
