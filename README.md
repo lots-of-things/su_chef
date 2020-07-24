@@ -5,7 +5,7 @@
 
 This is a demo project to use an overhead camera and an Arduino Braccio to pick up objects using ROS MoveIt and OpenCV's dnn with YOLOv3 weights.  See it in action.
 
-insert image here :)
+![OpenCV detects apple and Braccio arm picks it up](braccio_summary.gif)
 
 ## Instructions
 
