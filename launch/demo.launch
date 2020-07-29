@@ -48,7 +48,6 @@
 
   <include if="$(arg start_detection)" file="$(find ros_braccio_opencv_obj_detect_grab)/launch/detection.launch">
     <arg name="video_device" value="$(arg video_device)"/>
-    <arg name="tracked_object" value="$(arg tracked_object)" />
   </include>
 
 </launch>

@@ -7,6 +7,8 @@ This is a demo project to use an overhead camera and an Arduino Braccio to pick 
 
 ![OpenCV detects apple and Braccio arm picks it up](braccio_summary.gif)
 
+The current model detects apples, tomatos and bell peppers. If you are interested in adapting this to detect your own objects, you can check out [my other project](https://github.com/lots-of-things/yolo-colab-simple) to learn how to train your own model.  See more informationat the end for how to incorporate your model into this package.
+
 ## Instructions
 
 ### 0. Install a ton of ROS stuff
@@ -79,14 +81,22 @@ After you have calibrated, you can press `l` on subsequent startups to load the 
 
 ### 6. target objects for pickup
 
-Finally, place your object in the field of view.  If the object is detected a box will appear around it with a label.  By default it is set up to detect only apples, but this can be changed by passing `tracked_object:=other_thing` as part of the `demo.launch` launch command above. Available objects as part of yolov3 can be found in `models/yolov3.txt`. Additional objects will require training a yolov3 model yourself.
+Finally, place your object in the field of view.  If an object is detected a box will appear around it with a label.  Available objects as part of yolov3 can be found in `models/yolov3.txt`. Additional objects will require training a yolov3 model yourself (see below).
 
-After an object has been detected you can press `t` to target an object and pick it up.  If the object is out of the range that the robot can reach it will fail.  If it is too close to pick up, it will try to push it backwards into the reachable window.  After it has moved the object you can press `t` again to reattempt targetting at the new location.
+After an object has been detected you can press `t` to target a random object and pick it up.  If the object is out of the range that the robot can reach it will fail.  If it is too close to pick up, it will try to push it backwards into the reachable window.  After it has moved the object you can press `t` again to reattempt targetting at the new location.
+
+Finally, you can press `s` from the menu to select a specific item to target. Follow the instructions at the prompt.
 
 And now you have a robot that can pick stuff up.
 
 
 # other things
+
+## using another YOLO image detection model
+
+If you want to change which objects can be detected, you can swap out the files in the `models` folder (`yolov3.cfg`, `yolov3.names`, and `yolov3.weights`) with your own YOLOv3 darknet model files. Just make sure to use the same names. See [this page](https://pjreddie.com/darknet/yolo/) for more details.
+
+If you need a jumpstart training your own model, check out [my other project](https://github.com/lots-of-things/yolo-colab-simple) to train a YOLOv3 model using Google Colab on custom data.
 
 ## using DroidCam
 I used my old phone as a webcam using `droidcam`. You can follow the linux setup instructions [here](https://www.dev47apps.com/droidcam/linux/).
