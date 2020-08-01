@@ -41,6 +41,9 @@ class BraccioXYBBTargetInterface(object):
   def __init__(self):
     super(BraccioXYBBTargetInterface, self).__init__()
 
+    myargv = rospy.myargv(argv=sys.argv)
+    self.class_name_path = myargv[1]
+
     moveit_commander.roscpp_initialize(sys.argv)
     rospy.init_node('braccio_xy_bb_target', anonymous=True)
 
@@ -49,7 +52,7 @@ class BraccioXYBBTargetInterface(object):
 
     self.gripper_group = moveit_commander.MoveGroupCommander("braccio_gripper")
 
-    self.bounding_box = [0,0,0,0,0]
+    self.bounding_box = [0,0,0]
     self.subscriber = rospy.Subscriber("bounding_box",  Int16MultiArray, self.bb_callback, queue_size=1)
     self.homography = None
 
@@ -59,6 +62,13 @@ class BraccioXYBBTargetInterface(object):
     self.subscriber = rospy.Subscriber(self.input_image_compressed,  CompressedImage, self.cal_im_callback, queue_size=1)
     self.mouseX = 100
     self.mouseY = 100
+
+    self.classes = None
+
+    with open(self.class_name_path, 'r') as f:
+        self.classes = [line.strip() for line in f.readlines()]
+
+    self.selected_class = None
 
   def bb_callback(self, ros_data):
     self.bounding_box = ros_data.data
@@ -77,9 +87,23 @@ class BraccioXYBBTargetInterface(object):
     x, y = self.bounding_box_center()
     return self.transform(x,y)
 
+  def select_target(self):
+    print 'select target'
+    for i in range(len(self.classes)):
+      print '  enter '+str(i)+' for '+str(self.classes[i])
+    tst = raw_input()
+    self.selected_class = int(tst)
+
   def bounding_box_center(self):
-    x = (self.bounding_box[1]+self.bounding_box[3])/2
-    y = (self.bounding_box[2]+self.bounding_box[4])/2
+    if len(self.bounding_box)==0:
+      return 0, 0
+    ind = 0
+    if self.selected_class:
+      for i in range(len(self.bounding_box)/5):
+        if self.bounding_box[i*5]==self.selected_class:
+          ind = i*5
+    x = self.bounding_box[ind*5 + 1]
+    y = self.bounding_box[ind*5 + 2]
     return x, y
 
   def draw_circle(self,event,x,y,flags,param):
@@ -326,7 +350,7 @@ def main():
   bb_targetter = BraccioXYBBTargetInterface()
 
   while True:
-      print "============ instructions: p=print, h=home, u=up, c=calibrate, l=load_calibration, t=target, m=manual, q=quit"
+      print "============ instructions: p=print, h=home, u=up, c=calibrate, l=load_calibration, t=target, s=select_target,  m=manual, q=quit"
       inp = raw_input()
       if inp=='q':
           break
@@ -344,6 +368,8 @@ def main():
           bb_targetter.go_to_home()
       if inp=='u':
           bb_targetter.go_to_up()
+      if inp=='s':
+          bb_targetter.select_target()
 
 
 if __name__ == '__main__':

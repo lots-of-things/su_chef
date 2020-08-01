@@ -36,7 +36,6 @@ class ObjectDetectorOpenCV:
         self.input_image_compressed = rospy.get_param('~input_image_compressed', "usb_cam/image_raw/compressed")
         self.output_image_compressed = rospy.get_param('~output_image', "face_image/compressed")
         self.model_path_prefix = rospy.get_param('~model_path_prefix', "models/yolov3")
-        self.tracked_object = rospy.get_param('~tracked_object', "apple")
 
         # print input parameters
         rospy.loginfo("input_image_compressed: " + self.input_image_compressed)
@@ -55,7 +54,7 @@ class ObjectDetectorOpenCV:
 
         self.classes = None
 
-        with open(self.model_path_prefix+'.txt', 'r') as f:
+        with open(self.model_path_prefix+'.names', 'r') as f:
             self.classes = [line.strip() for line in f.readlines()]
 
         self.COLORS = np.random.uniform(0, 255, size=(len(self.classes), 3))
@@ -65,7 +64,7 @@ class ObjectDetectorOpenCV:
 
         while not rospy.is_shutdown():
             self.process_current_image()
-            time.sleep(1)
+            time.sleep(0.1)
 
         #rospy.spin()
 
@@ -83,60 +82,62 @@ class ObjectDetectorOpenCV:
         np_arr = np.fromstring(self.current_image.data, np.uint8)
         image = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
 
-        if self.pub_box.get_num_connections() > 0:
-            Width = image.shape[1]
-            Height = image.shape[0]
-            scale = 0.00392
+        Width = image.shape[1]
+        Height = image.shape[0]
+        scale = 0.00392
 
-            blob = cv2.dnn.blobFromImage(image, scale, (416,416), (0,0,0), True, crop=False)
+        blob = cv2.dnn.blobFromImage(image, scale, (416,416), (0,0,0), True, crop=False)
 
-            self.net.setInput(blob)
+        self.net.setInput(blob)
 
-            outs = self.net.forward(get_output_layers(self.net))
+        outs = self.net.forward(get_output_layers(self.net))
 
-            class_ids = []
-            confidences = []
-            boxes = []
-            conf_threshold = 0.1
-            nms_threshold = 0.4
-
-
-            for out in outs:
-                for detection in out:
-                    scores = detection[5:]
-                    class_id = np.argmax(scores)
-                    confidence = scores[class_id]
-                    if confidence > conf_threshold:
-                        center_x = int(detection[0] * Width)
-                        center_y = int(detection[1] * Height)
-                        w = int(detection[2] * Width)
-                        h = int(detection[3] * Height)
-                        x = center_x - w / 2
-                        y = center_y - h / 2
-                        class_ids.append(class_id)
-                        confidences.append(float(confidence))
-                        boxes.append([x, y, w, h])
+        class_ids = []
+        confidences = []
+        boxes = []
+        conf_threshold = 0.1
+        nms_threshold = 0.4
 
 
-            indices = cv2.dnn.NMSBoxes(boxes, confidences, conf_threshold, nms_threshold)
+        for out in outs:
+            for detection in out:
+                scores = detection[5:]
+                class_id = np.argmax(scores)
+                confidence = scores[class_id]
+                if confidence > conf_threshold:
+                    center_x = int(detection[0] * Width)
+                    center_y = int(detection[1] * Height)
+                    w = int(detection[2] * Width)
+                    h = int(detection[3] * Height)
+                    x = center_x - w / 2
+                    y = center_y - h / 2
+                    class_ids.append(class_id)
+                    confidences.append(float(confidence))
+                    boxes.append([x, y, w, h])
 
-            for i in indices:
-                i = i[0]
 
-                class_id = class_ids[i]
-                label = str(self.classes[class_id])
+        indices = cv2.dnn.NMSBoxes(boxes, confidences, conf_threshold, nms_threshold)
 
-                if label == self.tracked_object:
-                    box = boxes[i]
-                    x = box[0]
-                    y = box[1]
-                    w = box[2]
-                    h = box[3]
-                    box_msg = Int16MultiArray()
-                    box_msg.data = [class_id, x, y, x+w, y+h]
-                    self.pub_box.publish(box_msg)
-                    color = self.COLORS[class_id]
-                    draw_prediction(image, label, color, confidences[i], round(x), round(y), round(x+w), round(y+h))
+        box_data = []
+        for i in indices:
+            i = i[0]
+
+            class_id = class_ids[i]
+            label = str(self.classes[class_id])
+
+            box = boxes[i]
+            x = box[0]
+            y = box[1]
+            w = box[2]
+            h = box[3]
+            box_data.extend([class_id, x+w/2, y+h/2, w, h])
+            color = self.COLORS[class_id]
+            draw_prediction(image, label, color, confidences[i], round(x), round(y), round(x+w), round(y+h))
+
+        box_msg = Int16MultiArray()
+        box_msg.data = box_data
+
+        self.pub_box.publish(box_msg)
 
         # skip if no subscribers are registered
         if self.pub_image.get_num_connections() == 0:
