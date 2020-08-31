@@ -1,5 +1,5 @@
 
-# ros_braccio_opencv_obj_detect_grab
+# su_chef
 
 ### Arduino Braccio robotic arm + object detection using OpenCV YOLOv3
 
@@ -26,7 +26,7 @@ Then you can use the Arduino IDE to upload the `braccio_ros/braccio_ros.ino` fil
 
 Clone this repo into the src folder of a catkin workspace.
 ```
-git clone git@github.com:lots-of-things/ros_braccio_opencv_obj_detect_grab.git braccio_opencv_ws/src/ros_braccio_opencv_obj_detect_grab
+git clone git@github.com:lots-of-things/su_chef.git braccio_opencv_ws/src/su_chef
 ```
 
 Run catkin_make in the root of the workspace.
@@ -37,7 +37,7 @@ catkin_make
 Finally you'll need to download the yolov3 weights into the `models/` folder.
 
 ```
-cd braccio_opencv_ws/src/ros_braccio_opencv_obj_detect_grab/models/
+cd braccio_opencv_ws/src/su_chef/models/
 wget https://pjreddie.com/media/files/yolov3.weights
 ```
 
@@ -48,12 +48,12 @@ Launch the RViz model visualizer and the OpenCV object detection algorithm.
 ```
 cd braccio_opencv_ws
 source devel/setup.bash
-roslaunch ros_braccio_opencv_obj_detect_grab demo.launch start_detect:=true
+roslaunch su_chef demo.launch start_detect:=true
 ```
 
 The above command doesn't connect to the .  If you want to actually drive the Braccio arm make sure it is connected by USB and add `connect_braccio:=true` like so:
 ```
-roslaunch ros_braccio_opencv_obj_detect_grab demo.launch start_detect:=true connect_braccio:=true
+roslaunch su_chef demo.launch start_detect:=true connect_braccio:=true
 ```
 
 ### 4. Launch the interactive script
@@ -61,7 +61,7 @@ Finally, in a separate terminal run the script to begin the interactive program.
 ```
 cd braccio_opencv_ws
 source devel/setup.bash
-rosrun ros_braccio_opencv_obj_detect_grab braccio_xy_bb_target.py
+rosrun su_chef braccio_xy_bb_target.py
 ```
 
 There are a number of options available through the command line interface. Prior to calibration (see next step) only 4 commands will work:
@@ -118,5 +118,5 @@ ffmpeg -f v4l2 -i /dev/video1 -c:v rawvideo -pix_fmt yuyv422 -f v4l2 /dev/video2
 
 Finally, you can pass the new video device name as a parameter to demo.launch.
 ```
-ros_braccio_opencv_obj_detect_grab demo.launch video_device:=/dev/video2
+su_chef demo.launch video_device:=/dev/video2
 ```

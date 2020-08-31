@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
 
   <!-- By default, we are not in debug mode -->
@@ -8,7 +9,7 @@
   <arg name="video_device" default="/dev/video2" />
 
   <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
-  <include file="$(find ros_braccio_opencv_obj_detect_grab)/launch/planning_context.launch">
+  <include file="$(find su_chef)/launch/planning_context.launch">
     <arg name="load_robot_description" value="true"/>
   </include>
 
@@ -31,22 +32,22 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
 
   <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
-  <include file="$(find ros_braccio_opencv_obj_detect_grab)/launch/move_group.launch">
+  <include file="$(find su_chef)/launch/move_group.launch">
     <arg name="allow_trajectory_execution" value="true"/>
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
-  <include file="$(find ros_braccio_opencv_obj_detect_grab)/launch/moveit_rviz.launch">
+  <include file="$(find su_chef)/launch/moveit_rviz.launch">
     <arg name="config" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
-  <include if="$(arg connect_braccio)" file="$(find ros_braccio_opencv_obj_detect_grab)/launch/connect.launch">
+  <include if="$(arg connect_braccio)" file="$(find su_chef)/launch/connect.launch">
   </include>
 
-  <include if="$(arg start_detection)" file="$(find ros_braccio_opencv_obj_detect_grab)/launch/detection.launch">
+  <include if="$(arg start_detection)" file="$(find su_chef)/launch/detection.launch">
     <arg name="video_device" value="$(arg video_device)"/>
   </include>
 

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>ros_braccio_opencv_obj_detect_grab</name>
+  <name>su_chef</name>
   <version>0.0.0</version>
-  <description>The ros_braccio_opencv_obj_detect_grab package</description>
+  <description>The su_chef package</description>
 
   <maintainer email="will.stedden@gmail.com">stedn</maintainer>
   <license>BSD</license>
