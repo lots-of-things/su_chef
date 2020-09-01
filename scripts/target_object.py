@@ -476,7 +476,7 @@ class BraccioObjectTargetInterface(object):
     self.gripper_open()
     self.go_to_j(j1=1.9,j2=0.6,j3=1.05)
     self.go_to_j(j0=2)
-    self.pub.publish(std_msgs.msg.String("go"))
+    self.pub.publish(String("go"))
 
   def go_to_bowl(self):
     if SIMULATION:
