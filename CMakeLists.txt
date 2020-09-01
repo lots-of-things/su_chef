@@ -16,7 +16,3 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 add_executable(parse_and_publish parse_and_publish/parse_and_publish.cpp)
 target_link_libraries(parse_and_publish ${catkin_LIBRARIES})
 add_dependencies(parse_and_publish std_msgs)
-
-catkin_install_python(
-  PROGRAMS scripts/braccio_xy_plane.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

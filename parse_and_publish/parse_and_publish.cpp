@@ -1,4 +1,6 @@
 #include "ros/ros.h"
+#include <map>
+#include <string>
 #include "std_msgs/MultiArrayLayout.h"
 #include "std_msgs/MultiArrayDimension.h"
 #include "std_msgs/UInt8MultiArray.h"
@@ -13,7 +15,7 @@
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
-uint _DataArray[6];
+std::map<std::string, int> _DataArray;
 
 void chatterCallback(const sensor_msgs::JointState::ConstPtr& msg)
 {
@@ -21,7 +23,8 @@ void chatterCallback(const sensor_msgs::JointState::ConstPtr& msg)
   for(i=0; i<6; i++)
   {
     //ROS_INFO("I heard: [%d]", uint((msg->position[i])/PI*180));
-    _DataArray[i]= uint((msg->position[i])/PI*180);
+
+    _DataArray[std::string((msg->name[i]))]= uint((msg->position[i])/PI*180);
   }
 }
 
@@ -64,7 +67,7 @@ int main(int argc, char **argv)
   ros::Subscriber sub = n.subscribe("joint_states", 6, chatterCallback);
 
   ros::Publisher pub = n.advertise<std_msgs::UInt8MultiArray>("joint_array", 6);
-  
+
   ros::Rate loop_rate(10);
 
   while (ros::ok())
@@ -73,12 +76,12 @@ int main(int argc, char **argv)
     //Clear array
     array.data.clear();
 
-    //for loop, pushing data in the size of the array
-    for (int i = 0; i < 6; i++)
-    {
-    //assign array a random number between 0 and 255.
-     array.data.push_back(_DataArray[i]);
-    }
+    array.data.push_back(_DataArray["base_joint"]);
+    array.data.push_back(_DataArray["shoulder_joint"]);
+    array.data.push_back(_DataArray["elbow_joint"]);
+    array.data.push_back(_DataArray["wrist_pitch_joint"]);
+    array.data.push_back(_DataArray["wrist_roll_joint"]);
+    array.data.push_back(_DataArray["gripper_joint"]);
     pub.publish(array);
 
     ros::spinOnce();
@@ -90,7 +93,7 @@ int main(int argc, char **argv)
    * callbacks will be called from within this thread (the main one).  ros::spin()
    * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
    */
-  
+
 
   return 0;
 }
