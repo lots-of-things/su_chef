@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
   <arg name="load_robot_description" default="false"/>
@@ -6,19 +7,19 @@
   <arg name="robot_description" default="robot_description"/>
 
   <!-- Load universal robot description format (URDF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find ros_braccio_opencv_obj_detect_grab)/urdf/braccio_arm.urdf"/>
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find su_chef)/urdf/braccio_arm.urdf"/>
 
   <!-- The semantic description that corresponds to the URDF -->
-  <param name="$(arg robot_description)_semantic" textfile="$(find ros_braccio_opencv_obj_detect_grab)/config/visual.srdf" />
+  <param name="$(arg robot_description)_semantic" textfile="$(find su_chef)/config/visual.srdf" />
 
   <!-- Load updated joint limits (override information from URDF) -->
   <group ns="$(arg robot_description)_planning">
-    <rosparam command="load" file="$(find ros_braccio_opencv_obj_detect_grab)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find su_chef)/config/joint_limits.yaml"/>
   </group>
 
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
-    <rosparam command="load" file="$(find ros_braccio_opencv_obj_detect_grab)/config/kinematics.yaml"/>
+    <rosparam command="load" file="$(find su_chef)/config/kinematics.yaml"/>
   </group>
 
 </launch>

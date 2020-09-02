@@ -4,6 +4,6 @@
   <param name="moveit_controller_manager" value="moveit_fake_controller_manager/MoveItFakeControllerManager"/>
 
   <!-- The rest of the params are specific to this plugin -->
-  <rosparam file="$(find ros_braccio_opencv_obj_detect_grab)/config/fake_controllers.yaml"/>
+  <rosparam file="$(find su_chef)/config/fake_controllers.yaml"/>
 
 </launch>

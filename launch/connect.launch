@@ -1,10 +1,16 @@
 <launch>
 
+  <arg name="connect_slicer" default="false" />
+
   <node pkg="rosserial_python" name="rosserial_braccio" type="serial_node.py" output="screen" clear_params="true">
     <param name="port" value="/dev/ttyACM0" />
   </node>
 
-   <node pkg="ros_braccio_opencv_obj_detect_grab" name="parse_and_publish_braccio" type="parse_and_publish" output="screen">
+   <node pkg="su_chef" name="parse_and_publish_braccio" type="parse_and_publish" output="screen">
+  </node>
+
+  <node if="$(arg connect_slicer)" pkg="rosserial_python" name="rosserial_slicer" type="serial_node.py" output="screen" clear_params="true">
+    <param name="port" value="/dev/ttyACM1" />
   </node>
 
 </launch>

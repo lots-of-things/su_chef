@@ -631,7 +631,7 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-    ros_braccio_opencv_obj_detect_grab:
+    su_chef:
     Pick up items identified with OpenCV webcam using Arduino Braccio Arm
     Copyright (C) 2020  Will Stedden
 

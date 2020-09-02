@@ -8,76 +8,164 @@
             <material name="black" />
             <origin rpy="0 0 0" xyz="0 0 0" />
         </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.01" radius=".053" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </collision>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <mass value="1"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <link name="braccio_base_link">
         <visual>
             <geometry>
-                <mesh filename="package://ros_braccio_opencv_obj_detect_grab/stl/braccio_base.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://su_chef/stl/braccio_base.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <material name="orange" />
             <origin rpy="0 0 3.1416" xyz="0 0.004 0" />
         </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://su_chef/stl/braccio_base.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </collision>
+        <inertial>
+            <origin rpy="0 0 3.1416" xyz="0 0.004 0" />
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <link name="shoulder_link">
         <visual>
             <geometry>
-                <mesh filename="package://ros_braccio_opencv_obj_detect_grab/stl/braccio_shoulder.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://su_chef/stl/braccio_shoulder.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <material name="orange" />
             <origin rpy="0 0 0" xyz="-0.0045 0.0055 -0.026" />
         </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://su_chef/stl/braccio_shoulder.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="-0.0045 0.0055 -0.026" />
+        </collision>
+        <inertial>
+            <origin rpy="0 0 0" xyz="-0.0045 0.0055 -0.026" />
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <link name="elbow_link">
         <visual>
             <geometry>
-                <mesh filename="package://ros_braccio_opencv_obj_detect_grab/stl/braccio_elbow.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://su_chef/stl/braccio_elbow.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <material name="orange" />
             <origin rpy="0 0 0" xyz="-0.0045 0.005 -0.025" />
         </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://su_chef/stl/braccio_elbow.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="-0.0045 0.005 -0.025" />
+        </collision>
+        <inertial>
+            <origin rpy="0 0 0" xyz="-0.0045 0.005 -0.025" />
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <link name="wrist_pitch_link">
         <visual>
             <geometry>
-                <mesh filename="package://ros_braccio_opencv_obj_detect_grab/stl/braccio_wrist_pitch.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://su_chef/stl/braccio_wrist_pitch.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <material name="orange" />
             <origin rpy="0 0 0" xyz="0.003 -0.0004 -0.024" />
         </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://su_chef/stl/braccio_wrist_pitch.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0.003 -0.0004 -0.024" />
+        </collision>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.003 -0.0004 -0.024" />
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <link name="wrist_roll_link">
         <visual>
             <geometry>
-                <mesh filename="package://ros_braccio_opencv_obj_detect_grab/stl/braccio_wrist_roll.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://su_chef/stl/braccio_wrist_roll.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <material name="white" />
             <origin rpy="0 0 0" xyz="0.006 0 0.0" />
         </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://su_chef/stl/braccio_wrist_roll.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0.006 0 0.0" />
+        </collision>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.006 0 0.0" />
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <link name="left_gripper_link">
         <visual>
             <geometry>
-                <mesh filename="package://ros_braccio_opencv_obj_detect_grab/stl/braccio_left_gripper.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://su_chef/stl/braccio_left_gripper.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <material name="white" />
             <origin rpy="0 1.5708 0" xyz="0 -0.012 0" />
         </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://su_chef/stl/braccio_left_gripper.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <origin rpy="0 1.5708 0" xyz="0 -0.012 0" />
+        </collision>
+        <inertial>
+            <origin rpy="0 1.5708 0" xyz="0 -0.012 0" />
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <link name="right_gripper_link">
         <visual>
             <geometry>
-                <mesh filename="package://ros_braccio_opencv_obj_detect_grab/stl/braccio_right_gripper.stl" scale="0.001 0.001 0.001" />
+                <mesh filename="package://su_chef/stl/braccio_right_gripper.stl" scale="0.001 0.001 0.001" />
             </geometry>
             <material name="white" />
             <origin rpy="0 1.5708 0" xyz="0 -0.012 0.010" />
         </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://su_chef/stl/braccio_right_gripper.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <origin rpy="0 1.5708 0" xyz="0 -0.012 0.010" />
+        </collision>
+        <inertial>
+            <origin rpy="0 1.5708 0" xyz="0 -0.012 0.010" />
+            <mass value="0.01"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
     </link>
 
     <joint name="base_joint" type="revolute">
@@ -146,4 +234,9 @@
     <material name="black">
         <color rgba="0 0 0 0.50" />
     </material>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
 </robot>
