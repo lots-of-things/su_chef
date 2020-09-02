@@ -475,8 +475,22 @@ class BraccioObjectTargetInterface(object):
     self.go_to_j(j1=1.9,j2=0.3,j3=1.05)
     self.gripper_open()
     self.go_to_j(j1=1.9,j2=0.6,j3=1.05)
+    self.gripper_close()
+    self.go_to_j(j0=2.8)
+    self.go_to_j(j1=1.9,j2=0.2,j3=1.05)
+    self.go_to_j(j0=3.14)
+    self.go_to_j(j1=1.9,j2=0.6,j3=1.05)
     self.go_to_j(j0=2)
     self.pub.publish(String("go"))
+    time.sleep(2)
+    self.go_to_j(j0=2.8)
+    self.go_to_j(j1=1.9,j2=0.2,j3=1.05)
+    self.go_to_j(j0=3.14)
+    self.go_to_j(j1=1.9,j2=0.6,j3=1.05)
+    self.go_to_j(j0=2)
+    self.pub.publish(String("go"))
+    time.sleep(2)
+
 
   def go_to_bowl(self):
     if SIMULATION:

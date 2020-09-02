@@ -5,6 +5,7 @@
   <arg name="debug" default="false" />
   <arg name="tracked_object" default="apple" />
   <arg name="connect_braccio" default="false" />
+  <arg name="connect_slicer" default="false" />
   <arg name="start_detection" default="false" />
   <arg name="video_device" default="/dev/video2" />
 
@@ -45,6 +46,7 @@
   </include>
 
   <include if="$(arg connect_braccio)" file="$(find su_chef)/launch/connect.launch">
+    <arg name="connect_slicer" value="$(arg connect_slicer)"/>
   </include>
 
   <include if="$(arg start_detection)" file="$(find su_chef)/launch/detection.launch">
